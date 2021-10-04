@@ -2,9 +2,11 @@
 
 ## Quick note:
 Patterns used:
-Factory
-Builder
-Singleton
+Factory method, 
+Builder,
+Singleton,
+Abstract Factory.
+
 
 ## Quick note 2:
 Tea and Coffee types are inherited from one single type, as they share the same properties, just different values which are set in the builder. 
