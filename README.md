@@ -1,5 +1,21 @@
 # TMPS
 
+## Quick note:
+Patterns used:
+Factory
+Builder
+Singleton
+
+## Quick note 2:
+Tea and Coffee types are inherited from one single type, as they share the same properties, just different values which are set in the builder. 
+```
+public class Fruit extends Green implements Tea {
+
+}
+```
+
+
+
 ## Implementation:
 In this laboratory work I have created a Coffee Bar, which sells Coffee and Tea. Straight to the point:
 The Abstract Factory:
@@ -11,9 +27,9 @@ public interface AbstractFactory {
 
 }
 ```
-Basically, this Factory works this way: The Tea and Coffee factory both require a method to run. sellTea and sellCoffee. Thus, this interface forces the classes that implement it to have these methods in.
+Basically, this Factory works this way: The Tea and Coffee factory both require a method to run. sellTea and sellCoffee. Thus, this interface forces the classes that implement it to have these methods in. Which created a problem. In TeaFactory there is a redundant sellCoffee, which is simply being skipped, and vice-versa for the CoffeeFactory, I found no better soltuion for this problem.
 
-Also, the singleton patter is applied here.
+Also, the singleton pattern is applied here.
 
 ```
 public class CoffeeFactory implements AbstractFactory{
