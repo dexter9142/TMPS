@@ -2,7 +2,7 @@ package tmps;
 
 import tmps.drinks.Coffee;
 import tmps.drinks.Tea;
-import tmps.drinks.builders.*;
+import tmps.builders.*;
 
 
 import java.util.Scanner;

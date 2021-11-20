@@ -2,9 +2,8 @@ package tmps;
 
 import tmps.drinks.*;
 import tmps.drinks.Coffee;
-import tmps.drinks.builders.*;
+import tmps.builders.*;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 public class CoffeeFactory implements AbstractFactory{
@@ -25,6 +24,13 @@ public class CoffeeFactory implements AbstractFactory{
 
     private CoffeeFactory(){}
 
+
+        public Coffee sellArabica(){
+            ArabicaBuilder arabicaBuilder = new ArabicaBuilder();
+            creator.sellArabica(arabicaBuilder);
+            return (Coffee) arabicaBuilder.getCoffee();
+
+        }
 
         public Coffee sellCoffee(){
 
