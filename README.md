@@ -171,7 +171,7 @@ Patterns implemented:
     }
 ````
 * Bridge
-``
+`````
 public class Arabica extends Caffeine{
     private int size, coffeeQuantity, price;
     private String name;
@@ -189,10 +189,10 @@ public class Arabica extends Caffeine{
         coffee.setName("Arabica");
         coffee.setSize(size);
     }
-``
+`````
 
 * Proxy, in two stages
-``
+``````
 public ProxyCoffee(String name){
     this.name = name;
 }
@@ -221,10 +221,10 @@ public ProxyCoffee(String name){
 
     }
 }
-``
+``````
 ## And
 
-``
+`````
 public RealCoffee(String name){
         this.name = name;
         pour(name);
@@ -247,4 +247,66 @@ public RealCoffee(String name){
     public void setSize(int page) {
 
     }
-``
+`````
+
+
+## Part 3
+
+* Patterns included: Visitor
+
+````
+public class CoffeePartDisplayVisitor implements CoffeePartVisitor{
+
+    @Override
+    public void visit(Cup cup) {
+        System.out.println("Cup has been added.");
+    }
+
+    @Override
+    public void visit(Cap cap) {
+        System.out.println("Cap has been added");
+    }
+
+    @Override
+    public void visit(Liquid liquid) {
+        System.out.println("Coffee has been poured");
+    }
+
+    @Override
+    public void visit(CompleteCoffee completeCoffee) {
+        System.out.println("Coffee Ready");
+    }
+}
+````
+
+The Visiting interface:
+`````
+public interface CoffeePartVisitor{
+        public void visit(Cup cup);
+        public void visit(Cap cap);
+        public void visit(Liquid liquid);
+
+        public void visit(CompleteCoffee completeCoffee);
+}
+`````
+Implementation:
+````
+
+    Ornament[] parts;
+
+    public CompleteCoffee(){
+        parts = new Ornament[] {new Cup(), new Cap(), new Liquid()};
+    }
+
+    @Override
+    public void decorate(CoffeePartVisitor coffeePartVisitor){
+        for(int i =0; i<parts.length; i++){
+            parts[i].decorate(coffeePartVisitor);
+        }
+        coffeePartVisitor.visit(this);
+    }
+`````
+
+* This Visitor Pattern was implemented over the Decorator pattern
+
+## Final
