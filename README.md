@@ -147,7 +147,104 @@ public interface CoffeeBuilder {
 ```
 Same goes for the tea builder.
 
-## Final
+## Part 2
+Patterns implemented:
+* Decorator
+````
+    public RedOrnamentDecorator(Ornament decorationOrnament){
+        super(decorationOrnament);
+    }
+    private Object CoffeePartVisitor;
+    @Override
+    public void decorate(){
+        decorationElement.decorate((tmps.domain.Visitor.CoffeePartVisitor) CoffeePartVisitor);
+        setRedTop(decorationElement);
+    }
 
-The application itself works via a hierarchical digit based switch statement, firstly, the user chooses chooses the drink type (Coffee or Tea), then the specification (Espresso/Latte/Cappuccino),(Black tea, green tea, fruit tea). The console returns the "order".
+    private void setRedTop(Ornament decoratedOrnament){
+        System.out.println("Top color: Red");
+    }
 
+    @Override
+    public void decorate(tmps.domain.Visitor.CoffeePartVisitor coffeePartVisitor) {
+
+    }
+````
+* Bridge
+``
+public class Arabica extends Caffeine{
+    private int size, coffeeQuantity, price;
+    private String name;
+
+    public Arabica(String name, int coffeeQuantity, int size, int price, Coffee coffee){
+        super(coffee);
+        this.name = name;
+        this.size = size;
+        this.coffeeQuantity = coffeeQuantity;
+        this.price = price;
+    }
+
+
+    public void pour(){
+        coffee.setName("Arabica");
+        coffee.setSize(size);
+    }
+``
+
+* Proxy, in two stages
+``
+public ProxyCoffee(String name){
+    this.name = name;
+}
+
+    @Override
+    public void setName(String name) {
+
+    if(realCoffee == null){
+        realCoffee = new RealCoffee(name);
+    }
+    realCoffee.setName("Proxy Digital Coffee");
+    }
+
+    @Override
+    public void setCoffeeQuantity(int coffeeQuantity) {
+
+    }
+
+    @Override
+    public void setSize(int page) {
+
+    }
+
+    @Override
+    public void setPrice(double price) {
+
+    }
+}
+``
+## And
+
+``
+public RealCoffee(String name){
+        this.name = name;
+        pour(name);
+    }
+
+    private void pour(String name){
+        System.out.println("Pouring: " + name);
+    }
+
+    @Override
+    public void setName(String name) {
+        System.out.println("Sold: " + name);
+    }
+
+    @Override
+    public void setCoffeeQuantity(int coffeeQuantity) {
+    }
+
+    @Override
+    public void setSize(int page) {
+
+    }
+``
